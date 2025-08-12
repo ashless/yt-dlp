@@ -171,8 +171,11 @@ yt-dlp --update-to nightly
 python3 -m pip install -U --pre "yt-dlp[default]"
 ```
 
+When running a yt-dlp version that is older than 90 days, you will see a warning message suggesting to update to the latest version.
+You can suppress this warning by adding `--no-update` to your command or configuration file.
+
 ## DEPENDENCIES
-Python versions 3.9+ (CPython) and 3.10+ (PyPy) are supported. Other versions and implementations may or may not work correctly.
+Python versions 3.9+ (CPython) and 3.11+ (PyPy) are supported. Other versions and implementations may or may not work correctly.
 
 <!-- Python 3.5+ uses VC++14 and it is already embedded in the binary created
 <!x-- https://www.microsoft.com/en-us/download/details.aspx?id=26999 --x>
@@ -208,7 +211,7 @@ The following provide support for impersonating browser requests. This may be re
 
 * [**mutagen**](https://github.com/quodlibet/mutagen)\* - For `--embed-thumbnail` in certain formats. Licensed under [GPLv2+](https://github.com/quodlibet/mutagen/blob/master/COPYING)
 * [**AtomicParsley**](https://github.com/wez/atomicparsley) - For `--embed-thumbnail` in `mp4`/`m4a` files when `mutagen`/`ffmpeg` cannot. Licensed under [GPLv2+](https://github.com/wez/atomicparsley/blob/master/COPYING)
-* [**xattr**](https://github.com/xattr/xattr), [**pyxattr**](https://github.com/iustin/pyxattr) or [**setfattr**](http://savannah.nongnu.org/projects/attr) - For writing xattr metadata (`--xattr`) on **Mac** and **BSD**. Licensed under [MIT](https://github.com/xattr/xattr/blob/master/LICENSE.txt), [LGPL2.1](https://github.com/iustin/pyxattr/blob/master/COPYING) and [GPLv2+](http://git.savannah.nongnu.org/cgit/attr.git/tree/doc/COPYING) respectively
+* [**xattr**](https://github.com/xattr/xattr), [**pyxattr**](https://github.com/iustin/pyxattr) or [**setfattr**](http://savannah.nongnu.org/projects/attr) - For writing xattr metadata (`--xattrs`) on **Mac** and **BSD**. Licensed under [MIT](https://github.com/xattr/xattr/blob/master/LICENSE.txt), [LGPL2.1](https://github.com/iustin/pyxattr/blob/master/COPYING) and [GPLv2+](http://git.savannah.nongnu.org/cgit/attr.git/tree/doc/COPYING) respectively
 
 ### Misc
 
@@ -1902,7 +1905,7 @@ The following extractors use this feature:
 * `backend`: Backend API to use for extraction - one of `streaks` (default) or `brightcove` (deprecated)
 
 #### vimeo
-* `client`: Client to extract video data from. The currently available clients are `android`, `ios`, and `web`. Only one client can be used. The `android` client is used by default. If account cookies or credentials are used for authentication, then the `web` client is used by default. The `web` client only works with authentication. The `ios` client only works with previously cached OAuth tokens
+* `client`: Client to extract video data from. The currently available clients are `android`, `ios`, and `web`. Only one client can be used. The `web` client is used by default. The `web` client only works with account cookies or login credentials. The `android` and `ios` clients only work with previously cached OAuth tokens
 * `original_format_policy`: Policy for when to try extracting original formats. One of `always`, `never`, or `auto`. The default `auto` policy tries to avoid exceeding the web client's API rate-limit by only making an extra request when Vimeo publicizes the video's downloadability
 
 **Note**: These options may be changed/removed in the future without concern for backward compatibility
@@ -2367,7 +2370,6 @@ These are aliases that are no longer documented for various reasons
     --dump-headers                   --print-traffic
     --dump-intermediate-pages        --dump-pages
     --force-write-download-archive   --force-write-archive
-    --load-info                      --load-info-json
     --no-clean-infojson              --no-clean-info-json
     --no-split-tracks                --no-split-chapters
     --no-write-srt                   --no-write-subs
